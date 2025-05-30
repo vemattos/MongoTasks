@@ -42,7 +42,7 @@ public class TaskController {
     }
     @GetMapping("/{id}")
     @CrossOrigin("http://localhost:4200")
-    public ResponseEntity<Task> getTaskById(@PathVariable @NotNull Long id){
+    public ResponseEntity<Task> getTaskById(@PathVariable @NotNull String id){
         Optional<Task> idTask = taskRepository.findById(id);
         if (idTask.isPresent()) {
             return ResponseEntity.ok(idTask.get());
@@ -58,7 +58,7 @@ public class TaskController {
     }
     @PutMapping("/{id}")
     @CrossOrigin("http://localhost:4200")
-    public ResponseEntity<Task> updateTask(@PathVariable @NotNull Long id, @RequestBody Task task){
+    public ResponseEntity<Task> updateTask(@PathVariable @NotNull String id, @RequestBody Task task){
         Optional<Task> savedTask = taskRepository.findById(id);
         if (savedTask.isPresent()) {
             task.setId(id);
@@ -70,7 +70,7 @@ public class TaskController {
     }
     @DeleteMapping("/{id}")
     @CrossOrigin("http://localhost:4200")
-    public ResponseEntity<Task> deleteTask(@PathVariable @NotNull Long id){
+    public ResponseEntity<Task> deleteTask(@PathVariable @NotNull String id){
         taskRepository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
