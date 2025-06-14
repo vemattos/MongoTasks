@@ -22,6 +22,9 @@ public class Task {
     @Length(min = 5, max = 100)
     private String desc;
 
+    @NotNull
+    private String userId;
+
     public String getId() {
         return id;
     }
@@ -39,5 +42,13 @@ public class Task {
     }
     public void setDesc(String desc) {
         this.desc = desc;
+    }
+
+    public @NotNull String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(@NotNull String userId) {
+        this.userId = userId;
     }
 }

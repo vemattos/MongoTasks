@@ -17,61 +17,65 @@ import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.validation.constraints.NotNull;
 import vini.example.tasks.Model.Task;
-import vini.example.tasks.Repository.TaskRepository;
+import vini.example.tasks.Service.TaskService;
 
 @RestController
 @RequestMapping("/api/tasks")
 @CrossOrigin("http://localhost:4200")
 public class TaskController {
 
-    private final TaskRepository taskRepository;
-    
-    TaskController(TaskRepository taskRepository){
-        this.taskRepository = taskRepository;
+    private final TaskService taskService;
+
+    public TaskController(TaskService taskService) {
+        this.taskService = taskService;
     }
 
     @GetMapping
-    @CrossOrigin("http://localhost:4200")
-    public ResponseEntity<List<Task>> getAllTasks(){
-        List<Task> allTasks = taskRepository.findAll();
-        if (!allTasks.isEmpty()) {
-            return ResponseEntity.ok(allTasks);
+    public ResponseEntity<List<Task>> getAllTasks() {
+        List<Task> tasks = taskService.findAll();
+        if (!tasks.isEmpty()) {
+            return ResponseEntity.ok(tasks);
         } else {
             return ResponseEntity.notFound().build();
         }
     }
+
     @GetMapping("/{id}")
-    @CrossOrigin("http://localhost:4200")
-    public ResponseEntity<Task> getTaskById(@PathVariable @NotNull String id){
-        Optional<Task> idTask = taskRepository.findById(id);
-        if (idTask.isPresent()) {
-            return ResponseEntity.ok(idTask.get());
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<Task> getTaskById(@PathVariable @NotNull String id) {
+        Optional<Task> task = taskService.findById(id);
+        return task.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
+
     @PostMapping
-    @CrossOrigin("http://localhost:4200")
-    public ResponseEntity<Task> createTask(@RequestBody Task task){
-        Task newTask = taskRepository.save(task);
+    public ResponseEntity<Task> createTask(@RequestBody Task task) {
+        if (task.getUserId() == null) {
+            return ResponseEntity.badRequest().body(null);
+        }
+        Task newTask = taskService.save(task);
         return ResponseEntity.status(HttpStatus.CREATED).body(newTask);
     }
+
     @PutMapping("/{id}")
-    @CrossOrigin("http://localhost:4200")
-    public ResponseEntity<Task> updateTask(@PathVariable @NotNull String id, @RequestBody Task task){
-        Optional<Task> savedTask = taskRepository.findById(id);
-        if (savedTask.isPresent()) {
-            task.setId(id);
-            Task updatedTask = taskRepository.save(task);
-            return ResponseEntity.ok().body(updatedTask);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<Task> updateTask(@PathVariable @NotNull String id, @RequestBody Task task) {
+        Optional<Task> updatedTask = taskService.update(id, task);
+        return updatedTask.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
+
     @DeleteMapping("/{id}")
-    @CrossOrigin("http://localhost:4200")
-    public ResponseEntity<Task> deleteTask(@PathVariable @NotNull String id){
-        taskRepository.deleteById(id);
+    public ResponseEntity<Void> deleteTask(@PathVariable @NotNull String id) {
+        taskService.delete(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<Task>> getTasksByUserId(@PathVariable String userId) {
+        List<Task> tasks = taskService.findTasksByUserId(userId);
+        if (tasks.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(tasks);
+    }
+
 }
