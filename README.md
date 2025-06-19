@@ -40,3 +40,18 @@ O diferencial do projeto é a estrutura flexível das tarefas, que podem ter dif
    ```bash
    mvn clean install
    mvn spring-boot:run
+3. A API estará disponível em http://localhost:8080/api.
+
+### Frontend
+
+1. Abra os arquivos HTML diretamente no navegador ou sirva-os via servidor web local.
+2. Faça o cadastro, login e gerencie suas tarefas!
+
+3. Cada tarefa contém os seguintes campos:
+   ```bash
+   title: título da tarefa
+   description: descrição opcional
+   status: pendente, em andamento ou feito
+   type: tipo da tarefa (bug, evento, lembrete, meta, estudo, checklist)
+   userId: ID do usuário dono da tarefa
+   data: objeto JSON com campos personalizados conforme o tipo da tarefa
