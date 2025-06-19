@@ -1,26 +1,26 @@
-const loginForm = document.getElementById('loginForm');
+function fazerLogin(event) {
+  event.preventDefault();
 
-if (loginForm) {
-  loginForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
+  const payload = {
+    name: document.getElementById("username").value,
+    password: document.getElementById("password").value
+  };
 
-    const name = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
-
-    try {
-      const response = await fetch('http://localhost:8080/api/users/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, password })
-      });
-
-      if (!response.ok) throw new Error('Falha no login');
-
-      const user = await response.json();
-      localStorage.setItem('userId', user.id);
-      window.location.href = 'tarefas.html';
-    } catch (err) {
-      alert('Usuário ou senha incorretos!');
-    }
+  fetch("http://localhost:8080/api/users/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload)
+  })
+  .then(res => {
+    if (!res.ok) throw new Error("Credenciais inválidas");
+    return res.json();
+  })
+  .then(data => {
+    localStorage.setItem("userId", data.id);
+    localStorage.setItem("username", data.name);
+    window.location.href = "index.html";
+  })
+  .catch(err => {
+    alert(err.message);
   });
 }

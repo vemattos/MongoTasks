@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Nova Tarefa</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <h2>Criar Nova Tarefa</h2>
+
+  <form onsubmit="enviarTarefa(event)">
+    <label for="title">Título:</label>
+    <input id="title" required />
+
+    <label for="desc">Descrição:</label>
+    <textarea id="desc" rows="4"></textarea>
+
+    <label for="status">Status:</label>
+    <select id="status" required>
+      <option value="pendente">Pendente</option>
+      <option value="em andamento">Em Andamento</option>
+      <option value="feito">Feito</option>
+    </select>
+
+    <label for="typeSelect">Tipo:</label>
+    <select id="typeSelect" required onchange="renderCustomFields()">
+      <option value="">Selecione o tipo</option>
+      <option value="bug">Bug</option>
+      <option value="evento">Evento</option>
+      <option value="lembrete">Lembrete</option>
+      <option value="meta">Meta</option>
+      <option value="estudo">Estudo</option>
+      <option value="checklist">Checklist</option>
+    </select>
+
+    <div id="customFields"></div>
+
+    <br><br>
+    <button type="submit">Criar Tarefa</button>
+  </form>
+
+    <br><br>
+  <div>
+    <strong>Usuário logado:</strong> <span id="usernameDisplay"></span>
+    <button onclick="logout()">Sair</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
