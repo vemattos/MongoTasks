@@ -3,21 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <title>Login</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="login.css">
 </head>
 <body>
-  <h2>Login</h2>
 
-  <form onsubmit="fazerLogin(event)">
-    <label>Usuário:</label>
-    <input id="username" required>
+    <header>Mongo Tasks</header>
 
-    <label>Senha:</label>
-    <input id="password" type="password" required>
+  <div class="form-card">
+    <div class="form-card-2">
+      <form class="form" onsubmit="fazerLogin(event)">
+        <h2 class="title-login">Login</h2>
 
-    <br><br>
-    <button type="submit">Entrar</button>
-  </form>
+        <div class="field">
+          <span class="input-icon icon icon-user-1"></span>
+          <input id="username" type="text" class="input-field" placeholder="Nome" autocomplete="username" required />
+        </div>
+
+        <div class="field">
+          <span class="input-icon icon icon-locked"></span>
+          <input id="password" type="password" class="input-field" placeholder="Senha" autocomplete="current-password" required />
+        </div>
+
+        <div class="box-btn">
+          <button class="btn-login" type="submit">Entrar</button>
+        </div>
+      </form>
+    </div>
+  </div>
 
   <script src="login.js"></script>
 </body>

@@ -99,3 +99,15 @@ window.onload = () => {
   verificarLogin();
   mostrarUsuario();
 };
+
+function toggleUserMenu() {
+  const menu = document.getElementById("userMenu");
+  menu.classList.toggle("hidden");
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const username = localStorage.getItem("username");
+  if (username) {
+    document.getElementById("usernameDisplay").textContent = username;
+  }
+});
