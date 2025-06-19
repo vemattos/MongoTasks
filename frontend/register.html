@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cadastro</title>
+  <link rel="stylesheet" href="login.css" />
+</head>
+<body>
+
+<header style="display: flex; align-items: center; justify-content: center; position: relative; height: 80px; background-color: #171717; color: rgb(2, 229, 223); font-size: xx-large; padding: 0 2rem;">
+  <div
+    class="user-icon"
+    style="position: absolute; left: 2rem; font-size: 1.8rem; cursor: pointer; padding: 8px;"
+    onclick="window.location.href='index.html'"
+    title="Voltar"
+  >
+    &#8592; <!-- seta para esquerda -->
+  </div>
+  <div class="header-center">
+    Mongo Tasks
+  </div>
+</header>
+
+
+<div class="form-card">
+  <div class="form-card-2">
+    <form class="form" onsubmit="fazerCadastro(event)">
+      <h2 class="title-login">Cadastro</h2>
+
+      <div class="field">
+        <input id="name" type="text" class="input-field" placeholder="Nome" autocomplete="username" required />
+      </div>
+
+      <div class="field">
+        <input id="password" type="password" class="input-field" placeholder="Senha" autocomplete="new-password" required />
+      </div>
+
+      <button class="btn-login" type="submit" style="margin-top: 10px;">Cadastrar</button>
+    </form>
+  </div>
+</div>
+
+<script src="register.js"></script>
+</body>
+</html>

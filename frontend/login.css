@@ -17,6 +17,7 @@ header {
   color: rgb(2, 229, 223);
   font-size: xx-large;
 }
+
 .form-card { 
   width: 300px;
   margin: auto;
@@ -116,4 +117,13 @@ header {
 .btn-login:hover {
   background-image: linear-gradient(150deg, #00b8bf 0%, #002646 100%);
   color: white;
+}
+
+.cadastro{
+    color: #02e5d0;
+    text-align: center;
+    cursor: pointer;
+    margin: 0;
+    text-decoration: underline;
+    font-size: 0.9em;
 }

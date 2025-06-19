@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Minhas Tarefas</title>
+  <link rel="stylesheet" href="tasks.css" />
+</head>
+<body>
+
+  <header>
+    <div class="header-left">Mongo Tasks</div>
+    <div class="header-right">
+      <div class="user-icon" onclick="toggleUserMenu()">👤</div>
+      <div id="userMenu" class="user-menu hidden">
+        <p><strong>Usuário:</strong> <span id="usernameDisplay"></span></p>
+        <button onclick="window.location.href='index.html'">Criar Tarefa</button>
+        <button onclick="window.location.href='tasks.html'">Minhas Tarefas</button>
+        <button onclick="logout()">Sair</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="task-container">
+    <h2 class="title-page">Minhas Tarefas</h2>
+    <div id="taskList" class="task-list"></div>
+  </div>
+
+  <script src="tasks.js"></script>
+</body>
+</html>

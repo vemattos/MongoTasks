@@ -1,36 +1,44 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Login</title>
-  <link rel="stylesheet" href="login.css">
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="login.css">
 </head>
+
 <body>
 
-    <header>Mongo Tasks</header>
+    <header style="margin-top: 10px;">Mongo Tasks</header>
 
-  <div class="form-card">
-    <div class="form-card-2">
-      <form class="form" onsubmit="fazerLogin(event)">
-        <h2 class="title-login">Login</h2>
+    <div class="form-card">
+        <div class="form-card-2">
+            <form class="form" onsubmit="fazerLogin(event)">
+                <h2 class="title-login">Login</h2>
 
-        <div class="field">
-          <span class="input-icon icon icon-user-1"></span>
-          <input id="username" type="text" class="input-field" placeholder="Nome" autocomplete="username" required />
+                <div class="field">
+                    <span class="input-icon icon icon-user-1"></span>
+                    <input id="username" type="text" class="input-field" placeholder="Nome" autocomplete="username"
+                        required />
+                </div>
+
+                <div class="field">
+                    <span class="input-icon icon icon-locked"></span>
+                    <input id="password" type="password" class="input-field" placeholder="Senha"
+                        autocomplete="current-password" required />
+                </div>
+
+                <div class="box-btn">
+                    <button class="btn-login" type="submit">Entrar</button>
+                </div>
+
+                <p class="cadastro" onclick="window.location.href='register.html'">Cadastrar</p>
+
+            </form>
         </div>
-
-        <div class="field">
-          <span class="input-icon icon icon-locked"></span>
-          <input id="password" type="password" class="input-field" placeholder="Senha" autocomplete="current-password" required />
-        </div>
-
-        <div class="box-btn">
-          <button class="btn-login" type="submit">Entrar</button>
-        </div>
-      </form>
     </div>
-  </div>
 
-  <script src="login.js"></script>
+    <script src="login.js"></script>
 </body>
+
 </html>
